@@ -135,8 +135,8 @@
             console.log("WebGL Script!!! userInteractionData: " + e.data.uiInteractionDataJsonString);
 
             let interactions = {
-                ui: e.data.uiInteractionDataJsonString,
-                world: e.data.worldInteractionDataJsonString
+                ui: JSON.stringify(e.data.uiInteractionDataJsonString),
+                world: JSON.stringify(e.data.worldInteractionDataJsonString)
             };
 
             // unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
