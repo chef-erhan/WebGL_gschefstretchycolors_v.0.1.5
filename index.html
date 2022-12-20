@@ -131,7 +131,14 @@
         } else if (e.data.message == "SetUserInteractionData") {
 
           console.log("WebGL Script!!! userInteractionData: " + e.data.uiInteractionDataJsonString);
-          unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
+          
+          let interactions = {
+            ui: JSON.stringify(e.data.uiInteractionDataJsonString),
+            world: JSON.stringify(e.data.worldInteractionDataJsonString)
+          };
+          
+          // unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
+          unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(interactions));
         }
       }
     </script>
