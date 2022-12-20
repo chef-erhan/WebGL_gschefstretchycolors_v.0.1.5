@@ -130,8 +130,8 @@
           unity.SendMessage("Bridge", "SetCanvasReferenceResolution", JSON.stringify(resolution));
         } else if (e.data.message == "SetUserInteractionData") {
 
-          console.log("WebGL Script!!! userInteractionData: " + e.data.jsonString);
-          unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.jsonString));
+          console.log("WebGL Script!!! userInteractionData: " + e.data.uiInteractionDataJsonString);
+          unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
         }
       }
     </script>
