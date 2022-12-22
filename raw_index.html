@@ -136,7 +136,8 @@
 
             let interactions = {
                 ui: JSON.stringify(e.data.uiInteractionDataJsonString),
-                world: JSON.stringify(e.data.worldInteractionDataJsonString)
+                world: JSON.stringify(e.data.worldInteractionDataJsonString),
+                additional : JSON.stringify(e.data.additionalInteractionDataJsonString)
             };
 
             // unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
