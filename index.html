@@ -147,11 +147,7 @@
         }
     }
 
-    var ReceiveMessageFromUnity =  function (txt) {
-        // Get element to assign the message
-        // const lblMessage = document.getElementById("lblMessage");
-        // Assign received from Unity message
-        // lblMessage.innerText = txt;
+    function ReceiveMessageFromUnity (txt) {
         window.top.postMessage({
             message: "ReceiveMessageFromUnity",
             data: txt
