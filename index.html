@@ -104,7 +104,6 @@
         }).then((unityInstance) => {
             loadingBar.style.display = "none";
             unity = unityInstance;
-            // window.unityInstance = unityInstance;
             // fullscreenButton.onclick = () => {
             //   unityInstance.SetFullscreen(1);
             // };
@@ -149,6 +148,10 @@
     }
 
     function ReceiveMessageFromUnity(txt) {
+        // Get element to assign the message
+        // const lblMessage = document.getElementById("lblMessage");
+        // Assign received from Unity message
+        // lblMessage.innerText = txt;
         window.top.postMessage({
             message: "ReceiveMessageFromUnity",
             data: txt
