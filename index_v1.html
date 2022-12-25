@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Stretchy Colors</title>
+</head>
+<body style="text-align: center">
+<canvas id="unity-canvas" style="width: 450px; height: 600px; background: #231F20"></canvas>
+<script src="Build/WebGL_gschefstretchycolors_v.0.1.5.loader.js"></script>
+<script src='external.js'></script>
+<script>
+    var canvas = document.querySelector("#unity-canvas");
+    let unity;
+
+    createUnityInstance(canvas, {
+        dataUrl: "Build/WebGL_gschefstretchycolors_v.0.1.5.data",
+        frameworkUrl: "Build/WebGL_gschefstretchycolors_v.0.1.5.framework.js",
+        codeUrl: "Build/WebGL_gschefstretchycolors_v.0.1.5.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "CHEF Game Studio",
+        productName: "Stretchy Colors",
+        productVersion: "0.1.5",
+    }).then((unityInstance) => {
+        unity = unityInstance;
+    });
+
+    window.onmessage = function (e) {
+        if (e.data.message == "SetResolution") {
+
+            console.log("WebGL Script!!! width: " + e.data.width + " height: " + e.data.height);
+
+            canvas.style.width = e.data.width + "px";
+            canvas.style.height = e.data.height + "px";
+            canvas.style.scale = 600 / e.data.height;
+            canvas.style.transformOrigin = "0 0";
+
+            let resolution = {
+                width: e.data.width,
+                height: e.data.height
+            };
+            // unity.SendMessage("WebGLManager", "SetResolution", JSON.stringify(resolution));
+
+            unity.SendMessage("Bridge", "SetCanvasReferenceResolution", JSON.stringify(resolution));
+        } else if (e.data.message == "SetUserInteractionData") {
+
+            console.log("iFrame Unity -> userInteractionData: " + JSON.stringify(e.data.uiInteractionDataJsonString));
+            console.log("iFrame Unity -> userInteractionData: " + JSON.stringify(e.data.worldInteractionDataJsonString));
+            console.log("iFrame Unity -> userInteractionData: " + JSON.stringify(e.data.additionalDataJsonString));
+
+            let interactions = {
+                ui: JSON.stringify(e.data.uiInteractionDataJsonString),
+                world: JSON.stringify(e.data.worldInteractionDataJsonString),
+                additional: JSON.stringify(e.data.additionalDataJsonString)
+            };
+
+            // unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(e.data.uiInteractionDataJsonString), JSON.stringify(e.data.worldInteractionDataJsonString));
+            unity.SendMessage("Bridge", "SetUserInteractionData", JSON.stringify(interactions));
+        }
+    };
+
+</script>
+</body>
+</html>
