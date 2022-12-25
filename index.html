@@ -20,10 +20,10 @@
 <script>
 
     function ReceiveMessageFromUnity(txt) {
-        // window.top.postMessage({
-        //     message: "ReceiveMessageFromUnity",
-        //     data: txt
-        // }, "*");
+        window.top.postMessage({
+            message: "ReceiveMessageFromUnity",
+            data: txt
+        }, "*");
     }
     
     var container = document.querySelector("#unity-container");
